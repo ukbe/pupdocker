@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", ip: "192.168.10.10"
   # config.vm.network "public_network"
 
-  config.vm.hostname = "dockerhost"
+  config.vm.hostname = "puppet.local"
   config.vm.box = "ubuntu/xenial64"
   # config.vm.synced_folder "../data", "/vagrant_data"
 
@@ -15,12 +15,12 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "install_puppetmaster.sh"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "2048"
+    vb.memory = "4096"
   end
 
-  config.vm.provision "puppet" do |puppet|
-    puppet.module_path = "puppet/modules"
-    puppet.manifests_path = "puppet/manifests"
-  end
+  #config.vm.provision "puppet" do |puppet|
+  #  puppet.module_path = "puppet/modules"
+  #  puppet.manifests_path = "puppet/manifests"
+  #end
 
 end

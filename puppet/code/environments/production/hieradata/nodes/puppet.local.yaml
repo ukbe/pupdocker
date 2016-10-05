@@ -1,0 +1,7 @@
+classes:
+  - docker
+  - docker::compose
+
+docker::version: latest
+docker::compose::version: 1.8.1
+
