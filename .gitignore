@@ -1,0 +1,6 @@
+/*.log
+.DS_Store
+/puppet/.librarian
+/puppet/.tmp
+/puppet/modules/*
+/modules/*
