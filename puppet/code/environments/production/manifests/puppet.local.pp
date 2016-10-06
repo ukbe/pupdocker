@@ -13,18 +13,18 @@ node puppet.local {
     image_tag => '16.04'
   }
 
-docker::image { 'imgpuppet':
-  docker_dir => '/vagrant/docker/puppet-image/',
-  subscribe => Docker::Image['ubuntu']
-}
+  docker::image { 'imgpuppet':
+    docker_dir => '/vagrant/docker/puppet-image/',
+    subscribe => Docker::Image['ubuntu']
+  }
 
-docker::image { 'imgdb':
-  docker_dir => '/vagrant/docker/database-image/',
-  subscribe => Docker::Image['imgpuppet']
-}
+  docker::image { 'imgdb':
+    docker_dir => '/vagrant/docker/database-image/',
+    subscribe => Docker::Image['imgpuppet']
+  }
 
-docker::image { 'imgweb':
-    docker_file => '/vagrant/docker/webserver-image/',
+  docker::image { 'imgweb':
+    docker_dir => '/vagrant/docker/webserver-image/',
     subscribe => Docker::Image['imgpuppet']
   }
 

@@ -13,4 +13,4 @@ VOLUME /vagrant/vol-database/var/log/mysql:/var/log/mysql
 
 EXPOSE 3306
 
-ENTRYPOINT /usr/sbin/mysqld
+CMD service mysql start
