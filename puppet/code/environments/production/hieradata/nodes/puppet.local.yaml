@@ -1,7 +1,15 @@
 classes:
   - docker
   - docker::compose
+  - docker::images
 
 docker::version: latest
 docker::compose::version: 1.8.1
 
+docker::images::images:
+  ubuntu:
+     image_tag: 16.04
+  database:
+     docker_file: /vagrant/docker/Dockerfile-database
+  webserver:
+     docker_file: /vagrant/docker/Dockerfile-webserver

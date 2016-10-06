@@ -1,0 +1,17 @@
+FROM ubuntu:16.04
+MAINTAINER Ukbe Akdogan
+
+RUN echo "web.container" > /etc/hostname
+RUN apt-get update
+RUN apt-get -y install rubygems
+RUN echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+RUN gem install puppet
+RUN puppet agent --enable
+RUN puppet agent -t
+
+
+VOLUME /vagrant/vol-database/etc/mysql:/etc/mysql
+VOLUME /vagrant/vol-database/var/lib/mysql:/var/lib/mysql
+VOLUME /vagrant/vol-database/var/log/mysql:/var/log/mysql
+
+ENTRYPOINT /usr/bin/mysqld

@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
 #  config.librarian_puppet.puppetfile_dir = 'puppet/'
 
-  config.vm.provision "shell", path: "install_puppetmaster.sh"
+  config.vm.provision "shell", path: "puppet/bash/install_puppetserver.sh"
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "4096"

@@ -19,9 +19,9 @@ sudo systemctl enable puppetserver
 #cp /vagrant/puppet.conf.master /etc/puppet/puppet.conf
 
 # Install Puppet modules on master
-sudo /opt/puppetlabs/bin/puppet module install puppetlabs-ntp
-sudo /opt/puppetlabs/bin/puppet module install puppetlabs-mysql
-sudo /opt/puppetlabs/bin/puppet module install puppetlabs-nginx
-sudo /opt/puppetlabs/bin/puppet module install puppetlabs-docker_platform 
+sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-ntp
+sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-mysql
+sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-nginx
+sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-docker_platform
 
 sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
