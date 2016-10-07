@@ -11,17 +11,17 @@ sudo apt-get install -y puppetserver
 
 sudo cp -r /vagrant/puppet/code /etc/puppetlabs/
 
+sudo cp /vagrant/puppet/autosign.conf /etc/puppetlabs/puppet/
+sudo cp /vagrant/puppet/auth.conf /etc/puppetlabs/puppetserver/conf.d/
+
 # Start and enable Puppet Server
 sudo systemctl start puppetserver
 sudo systemctl enable puppetserver
 
-#cp /vagrant/autosign.conf /etc/puppet/
-#cp /vagrant/puppet.conf.master /etc/puppet/puppet.conf
-
 # Install Puppet modules on master
 sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-ntp
 sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-mysql
-sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-nginx
+sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppet-nginx
 sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-docker_platform
 
 sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true

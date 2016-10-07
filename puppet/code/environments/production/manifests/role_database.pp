@@ -8,7 +8,7 @@ if $hostrole == 'database' {
   mysql::db { 'appdb':
     user           => 'appuser',
     password       => 'apppass',
-    host           => 'localhost',
+    host           => '*',
     grant          => ['SELECT', 'UPDATE'],
     #  mysql::db::sql => '/path/to/sqlfile'
   }
