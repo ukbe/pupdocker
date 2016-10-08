@@ -26,7 +26,7 @@ if $hostrole == 'webserver' {
     line => 'daemon off;',
     require => Class[::nginx]
   }
-/*
+
   ::nginx::resource::location { 'php web root':
     ensure          => present,
     ssl             => false,
@@ -36,7 +36,7 @@ if $hostrole == 'webserver' {
     location        => '~ \.php$',
     index_files     => ['index.php', 'index.html', 'index.htm'],
     proxy           => undef,
-    fastcgi         => 'php-fpm:9000',
+    fastcgi         => 'phpfpm:9000',
     fastcgi_script  => undef,
     location_cfg_append => {
       fastcgi_connect_timeout => '3m',
@@ -44,5 +44,5 @@ if $hostrole == 'webserver' {
       fastcgi_send_timeout    => '3m'
     }
   }
-*/
+
 }

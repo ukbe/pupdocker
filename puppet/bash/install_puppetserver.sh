@@ -25,5 +25,6 @@ sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules p
 sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-docker_platform
 sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-vcsrepo
 sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-git
+sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules Slashbunny-phpfpm
 
 sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true

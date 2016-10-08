@@ -23,9 +23,14 @@ node puppet.local {
     subscribe => Docker::Image['imgpuppet']
   }
 
-  docker::image { 'imgweb':
-    docker_dir => '/vagrant/docker/webserver-image/',
-    subscribe => Docker::Image['imgpuppet']
-  }
+docker::image { 'imgweb':
+  docker_dir => '/vagrant/docker/webserver-image/',
+  subscribe => Docker::Image['imgpuppet']
+}
+
+docker::image { 'imgphp':
+  docker_dir => '/vagrant/docker/php-image/',
+  subscribe => Docker::Image['imgpuppet']
+}
 
 }
