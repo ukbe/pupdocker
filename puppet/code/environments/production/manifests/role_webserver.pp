@@ -35,8 +35,9 @@ if $hostrole == 'webserver' {
     www_root        => '/site/',
     location        => '~ \.php$',
     index_files     => ['index.php', 'index.html', 'index.htm'],
+    try_files       => ['$uri', '$uri/', '/index.php?$query_string;'],
     proxy           => undef,
-    fastcgi         => 'phpfpm:9000',
+    fastcgi         => 'con_php:9000',
     fastcgi_script  => undef,
     location_cfg_append => {
       fastcgi_connect_timeout => '3m',

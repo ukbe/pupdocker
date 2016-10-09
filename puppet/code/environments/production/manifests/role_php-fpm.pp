@@ -19,6 +19,21 @@ if $hostrole == 'php-fpm' {
     group => 'www-data'
   }
 
+  include git
+
+  vcsrepo { '/site':
+    ensure   => present,
+    provider => git,
+    source   => 'https://github.com/ukbe/',
+    branch   => 'master',
+    require  => Class['git']
+  }
+
+  file { '/site/.dev':
+    ensure => 'link',
+    target => '/root/.dev',
+  }
+
   class { 'phpfpm':
     daemonize => 'no',
     poold_purge => true

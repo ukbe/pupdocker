@@ -3,6 +3,8 @@ MAINTAINER Ukbe Akdogan
 
 ENV HOSTROLE=php-fpm
 
+COPY ./.env /root/
+
 COPY ./set_hosts.sh /tmp/
 RUN bash /tmp/set_hosts.sh
 
