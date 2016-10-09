@@ -1,1 +1,22 @@
 version: '2'
+services:
+  con_mysql:
+    image: imgdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - .:/code
+  con_php:
+    image: imgphp
+    ports:
+      - "9000:9000"
+    depends_on:
+      - con_mysql
+  con_nginx:
+    image: imgweb
+    ports:
+      - "80:80"
+    depends_on:
+      - con_php
+    volumes:
+      - con_php:/site:/site

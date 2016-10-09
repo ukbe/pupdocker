@@ -78,6 +78,10 @@ if $hostrole == 'php-fpm' {
     ensure => installed,
   }
 
+  package { 'php-pdo-mysql':
+    ensure => installed,
+  }
+
   exec { 'download and install composer':
     command => '/usr/bin/curl -sS https://getcomposer.org/installer | /usr/bin/php',
     cwd  => '/site/',
