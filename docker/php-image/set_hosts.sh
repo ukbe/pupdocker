@@ -7,7 +7,7 @@ cat /etc/hosts
 
 #apt-get install -y lsb-release
 #puppet agent --enable
-puppet agent -t
+puppet agent -t || test $? -eq 2
 
 # Revoke client certificate on Puppet server since
 # we won't be accessing the Puppet server with this hostname
@@ -23,5 +23,3 @@ puppet agent -t
 #     --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem \
 #     -X DELETE -d '{"desired_state":"revoked"}' \
 #     https://puppet.local:8140/puppet-ca/v1/certificate_status/${HOSTNAME}
-
-exit 0

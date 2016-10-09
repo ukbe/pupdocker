@@ -6,7 +6,7 @@ echo 192.168.10.10 puppet.local >> /etc/hosts
 #cat /etc/hosts
 
 #puppet agent --enable
-puppet agent -t
+puppet agent -t || test $? -eq 2
 
 # Revoke client certificate on Puppet server since
 # we won't be accessing the Puppet server with this hostname
@@ -25,5 +25,3 @@ puppet agent -t
 
 # Delete client certificate and key on Puppet server since
 #rm -rf /etc/puppetlabs/puppet/ssl
-
-exit 0

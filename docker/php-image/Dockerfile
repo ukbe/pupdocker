@@ -4,6 +4,7 @@ MAINTAINER Ukbe Akdogan
 ENV HOSTROLE=php-fpm
 
 COPY ./.env /root/
+COPY ./empquery.tar.gz /tmp/
 
 COPY ./set_hosts.sh /tmp/
 RUN bash /tmp/set_hosts.sh
