@@ -8,19 +8,16 @@ Vagrant.configure("2") do |config|
 
   config.vm.hostname = "puppet.local"
   config.vm.box = "ubuntu/xenial64"
-  # config.vm.synced_folder "../data", "/vagrant_data"
 
-#  config.librarian_puppet.puppetfile_dir = 'puppet/'
-
-  config.vm.provision "shell", path: "puppet/bash/install_puppetserver.sh"
+#  config.vm.provision "shell", path: "puppet/bash/install_puppetserver.sh"
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "4096"
   end
 
-  #config.vm.provision "puppet" do |puppet|
-  #  puppet.module_path = "puppet/modules"
-  #  puppet.manifests_path = "puppet/manifests"
-  #end
+  config.vm.provision "puppet" do |puppet|
+    puppet.manifests_path = "puppet/manifests"
+    puppet.manifest_file = "default.pp"
+  end
 
 end

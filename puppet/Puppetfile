@@ -1,5 +1,0 @@
-forge "https://forge.puppetlabs.com"
-
-#mod 'puppetlabs/apache'
-
-#mod 'puppetlabs/docker_platform'
