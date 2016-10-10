@@ -9,11 +9,16 @@ node 'puppet.local' {
     provider  => 'pip'
   }
 
+  user { 'add ubuntu user to docker group':
+    ensure => present,
+    groups => ['docker']
+  }
+
   docker::image { 'ubuntu':
     image_tag => '16.04'
   }
 
-  docker::image { 'imgpuppet':
+  docker::image { 'puppet':
     docker_dir => '/vagrant/docker/puppet-image/',
     subscribe => Docker::Image['ubuntu']
   }

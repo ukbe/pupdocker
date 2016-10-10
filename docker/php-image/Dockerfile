@@ -1,4 +1,4 @@
-FROM imgpuppet
+FROM puppet
 MAINTAINER Ukbe Akdogan
 
 ARG HOST_IP=172.17.0.1
@@ -7,14 +7,10 @@ ARG HOST_IP=172.17.0.1
 ENV HOSTROLE=php-fpm
 
 COPY ./.env /root/
-#COPY ./empquery.tar.gz /tmp/
 
 RUN set -xe \
   	&& echo ${HOST_IP}"\tpuppet.local" >> /etc/hosts \
     && ( puppet agent -t || test $? -eq 2 )
-
-#COPY ./set_hosts.sh /tmp/
-#RUN bash /tmp/set_hosts.sh
 
 VOLUME ["/var/log/php-fpm.log", "/site"]
 

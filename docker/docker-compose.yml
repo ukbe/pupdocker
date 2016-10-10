@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
       args:
         - HOST_IP=${HOST_IP}
-    image: imgdb
+    image: mysql
     ports:
       - "3306:3306"
     volumes:
@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
       args:
         - HOST_IP=${HOST_IP}
-    image: imgphp
+    image: phpfpm
     ports:
       - "9000:9000"
     depends_on:
@@ -33,7 +33,7 @@ services:
       dockerfile: Dockerfile
       args:
         - HOST_IP=${HOST_IP}
-    image: imgweb
+    image: nginx
     ports:
       - "80:80"
     depends_on:

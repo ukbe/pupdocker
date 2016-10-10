@@ -1,4 +1,4 @@
-FROM imgpuppet
+FROM puppet
 MAINTAINER Ukbe Akdogan
 
 ARG HOST_IP=172.17.0.1
@@ -9,9 +9,6 @@ ENV HOSTROLE=webserver
 RUN set -xe \
   	&& echo ${HOST_IP}"\tpuppet.local" >> /etc/hosts \
     && ( puppet agent -t || test $? -eq 2 )
-
-#COPY ./set_hosts.sh /tmp/
-#RUN bash /tmp/set_hosts.sh
 
 VOLUME ["/etc/nginx", "/var/log/nginx", "/site"]
 
