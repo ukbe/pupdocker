@@ -5,7 +5,7 @@ if $hostrole == 'php-fpm' {
     groups => 'www-data',
     ensure => present
   }
-
+/*
   file { '/site':
     ensure  => directory,
     owner => 'www-data',
@@ -18,20 +18,21 @@ if $hostrole == 'php-fpm' {
     owner => 'www-data',
     group => 'www-data'
   }
-/*
+*/
   include git
 
   vcsrepo { '/site':
     ensure   => present,
     provider => git,
-    source   => 'https://github.com/ukbe/',
+    source   => 'https://github.com/ukbe/empquery',
     branch   => 'master',
     owner    => 'www-data',
     group    => 'www-data',
     require  => Class['git']
   }
-*/
 
+  /*
+  # Temporary fix to GitHub access problem
   archive { 'extract source archive':
     path          => "/tmp/empquery.tar.gz",
     extract       => true,
@@ -42,6 +43,7 @@ if $hostrole == 'php-fpm' {
     group         => 'www-data',
     require       => File['/site'],
   }
+  */
 
   file { '/site/.env':
     ensure => present,

@@ -1,22 +1,44 @@
 version: '2'
 services:
   con_mysql:
+    build:
+      context: /vagrant/docker/database-image
+      dockerfile: Dockerfile
+      args:
+        - HOST_IP=${HOST_IP}
     image: imgdb
     ports:
       - "3306:3306"
     volumes:
       - .:/code
+
   con_php:
+    build:
+      context: /vagrant/docker/php-image
+      dockerfile: Dockerfile
+      args:
+        - HOST_IP=${HOST_IP}
     image: imgphp
     ports:
       - "9000:9000"
     depends_on:
       - con_mysql
+    volumes:
+      - /site
+    external_links:
+      - con_mysql
   con_nginx:
+    build:
+      context: /vagrant/docker/webserver-image
+      dockerfile: Dockerfile
+      args:
+        - HOST_IP=${HOST_IP}
     image: imgweb
     ports:
       - "80:80"
     depends_on:
       - con_php
-    volumes:
-      - con_php:/site:/site
+    volumes_from:
+      - con_php
+    external_links:
+      - con_php

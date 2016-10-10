@@ -1,7 +1,7 @@
 if $hostrole == 'webserver' {
 
   class{"::nginx":
-    manage_repo => true,
+    manage_repo => false,
     package_source => 'nginx-mainline',
     service_ensure => 'stopped'
   }
