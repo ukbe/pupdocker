@@ -4,8 +4,6 @@ services:
     build:
       context: /vagrant/docker/database-image
       dockerfile: Dockerfile
-      args:
-        - HOST_IP=${HOST_IP}
     image: mysql
     ports:
       - "3306:3306"
@@ -16,8 +14,6 @@ services:
     build:
       context: /vagrant/docker/php-image
       dockerfile: Dockerfile
-      args:
-        - HOST_IP=${HOST_IP}
     image: phpfpm
     ports:
       - "9000:9000"
@@ -27,12 +23,11 @@ services:
       - /site
     external_links:
       - con_mysql
+
   con_nginx:
     build:
       context: /vagrant/docker/webserver-image
       dockerfile: Dockerfile
-      args:
-        - HOST_IP=${HOST_IP}
     image: nginx
     ports:
       - "80:80"

@@ -7,7 +7,7 @@ sudo dpkg -i /tmp/puppetlabs-release-pc1-xenial.deb
 sudo apt-get update
 
 # Install Puppet Server
-sudo apt-get install -y puppetserver
+sudo apt-get install -y puppetserver librarian-puppet
 
 sudo cp -r /vagrant/puppet/code /etc/puppetlabs/
 
@@ -18,14 +18,19 @@ sudo cp /vagrant/puppet/auth.conf /etc/puppetlabs/puppetserver/conf.d/
 sudo systemctl start puppetserver
 sudo systemctl enable puppetserver
 
+cd /etc/puppetlabs/code
+
+sudo ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
+sudo librarian-puppet install --verbose
+
 # Install Puppet modules on master
-sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-ntp
-sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-mysql
-sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppet-nginx
-sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-docker_platform
-sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-vcsrepo
-sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-git
-sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules Slashbunny-phpfpm
-sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppet-archive
+#sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-ntp
+#sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-mysql
+#sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppet-nginx
+#sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-docker_platform
+#sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-vcsrepo
+#sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppetlabs-git
+#sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules Slashbunny-phpfpm
+#sudo /opt/puppetlabs/bin/puppet module install -i /etc/puppetlabs/code/modules puppet-archive
 
 sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
